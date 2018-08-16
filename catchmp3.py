@@ -7,10 +7,11 @@ driver = webdriver.Chrome()
 driver.get("http://www.dictionary.com/browse/d?s=t")
 elem = driver.find_element_by_name("q")
 
-import json
+import json         ///讀取json檔，取得單字清單
 with open('C:\\Users\\user\\Desktop\\voc.json', 'r') as f:
     voc = json.load(f)
 i = 0
+
 for i in range(len(voc)):
     print(voc[i][0])
     elem = driver.find_element_by_name("q")
@@ -20,7 +21,7 @@ for i in range(len(voc)):
         elem2 = driver.find_element_by_xpath("""//*[@id="source-luna"]/div[1]/section/header/div[1]/div/audio/source[2]""")
         
     except:
-        print ("No Found："+ voc[i][0])
+        print ("No Found："+ voc[i][0])          ///將沒有抓取到的單字清單印出
         continue
     elem2_attribute_value = elem2.get_attribute('src')
     print (elem2_attribute_value)
